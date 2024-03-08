@@ -2,6 +2,7 @@ package techno_kryon.spring_boot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @SpringBootApplication
 public class Application {
@@ -11,6 +12,8 @@ public class Application {
 
         // Printing to the console
         System.out.println("\n\tWELCOME TO SPRING BOOT APPLICATION\n");
+
+
 	}
 
 }
