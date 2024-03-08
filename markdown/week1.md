@@ -1,4 +1,4 @@
-##Week 1 (Create and run an application)
+## Week 1 (Create and run an application)
 1. Understanding the spring boot framework. (What, why,advantage)
 2. Create spring boot project using spring initializr. Maven [https://start.spring.io/](https://start.spring.io/#!type=maven-project&language=java&platformVersion=3.2.3&packaging=war&jvmVersion=17&groupId=techno_kryon&artifactId=spring_boot&name=spring_boot&description=Demo%20project%20for%20Spring%20Boot&packageName=techno_kryon.spring_boot)
 3. Import that project using IDE. Once application runs, WELCOME TO SPRING BOOT APPLICATION should be printed in the console.
