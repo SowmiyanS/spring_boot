@@ -26,7 +26,8 @@
 - DBeaver Community is a free, multi-platform database tool for developers.
 - To download DBeaver visit : [https://dbeaver.io/download/](https://dbeaver.io/download/)
 
-### References
+### References:
 
 - `Application Properties` : [spring boot - application properties](https://www.geeksforgeeks.org/spring-boot-application-properties/) 
 - `Custom properties` : [javatechonline](https://javatechonline.com/spring-boot-application-properties/)
+- `Spring Common Application Properties` : [docs.spring.io](https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html#appendix.application-properties.testing)
