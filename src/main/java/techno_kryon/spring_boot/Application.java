@@ -11,7 +11,8 @@ public class Application {
 		SpringApplication.run(Application.class, args);
 
         // Printing to the console
-        System.out.println("\n\tWELCOME TO SPRING BOOT APPLICATION\n");
+        // Commenting this code because it is now implemented in CommandLineRunner
+        //System.out.println("\n\tWELCOME TO SPRING BOOT APPLICATION\n");
 
 
 	}

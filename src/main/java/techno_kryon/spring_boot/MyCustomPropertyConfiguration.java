@@ -7,17 +7,21 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "my-custom-property")
 public class MyCustomPropertyConfiguration {
     
-    private String myString;
+    private String myString2;
 
     public MyCustomPropertyConfiguration() {
         // Default constructor
     }
 
-    public String getMyString() {
-        return this.myString;
+    public String getMyString2() {
+        return this.myString2;
     }
 
-    public void setMyString(String s) {
-        this.myString = s;
+    public void setMyString2(String s) {
+        this.myString2 = s;
+    }
+
+    public String toString() {
+        return this.myString2;
     }
 }
