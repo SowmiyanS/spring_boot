@@ -14,6 +14,12 @@ public class MyCommandLineRunner implements CommandLineRunner {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
+    @Autowired
+    private DepartmentRepository departmentRepository;
+
+    @Autowired
+    private EmployeeRepository employeeRepository;
+
     @Override
     public void run(String ... args) throws Exception {
         System.out.println("\n\tThis is my commandline runner!\n");
@@ -31,6 +37,16 @@ public class MyCommandLineRunner implements CommandLineRunner {
         else {
             System.out.println("\n\tERROR cannot connect to database");
         }
+
+        System.out.println("Inserting value into database!\n");
+
+        Department department = new Department("Java", "Chennai");
+        departmentRepository.save(department);
+        Employee employee = new Employee("SowmiyanS", "sowmiyan9491@gmail.com", "verystrongpassword1", department);
+        employeeRepository.save(employee);
+
+        System.out.println("Successfully saved values!\n");
+
     }
 
     public boolean checkDatabaseConnection() {
