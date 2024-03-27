@@ -31,3 +31,4 @@
 ### References:
 - [how to use apache poi to read excel files](https://www.geeksforgeeks.org/reading-writing-data-excel-file-using-apache-poi/)
 - [stackoverflow recommended tutorial to read excel](https://www.codejava.net/coding/how-to-read-excel-files-in-java-using-apache-poi)
+- [apache docs on XSSF](https://poi.apache.org/apidocs/dev/org/apache/poi/xssf/usermodel/XSSFWorkbook.html)

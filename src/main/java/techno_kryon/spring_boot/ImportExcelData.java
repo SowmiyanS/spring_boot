@@ -3,15 +3,20 @@ package techno_kryon.spring_boot;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
+//import org.apache.poi.xssf.usermodel.HSSFSheet;
+//import org.apache.poi.xssf.usermodel.HSSFWorkbook;
+//import org.apache.poi.ss.usermodel.XSSFSheet;
+//import org.apache.poi.ss.usermodel.XSSFWorkbook;
+//import org.apache.poi.ss.usermodel.Cell;
+//import org.apache.poi.ss.usermodel.FormulaEvaluator;
+//import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.FormulaEvaluator;
-import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.*;
 
 
 import java.util.Iterator;
-import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +25,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 @Component
 public class ImportExcelData {
 
-    @Autowired
-    private Environment env;
 
     //private String filePath = env.getProperty("excelfilepath");
     private String filePath = "./src/main/resources/data.xlsx";
@@ -36,39 +39,54 @@ public class ImportExcelData {
 
             // Main Logic Starts
 
-            XSSFWorkbook = workbook = new XSSFWorkbook(fileInputStream);
+            Workbook workbook = new XSSFWorkbook(fileInputStream);
 
-            XSSFSheet sheet = workbook.getSheetAt(0);
+            Sheet sheet = workbook.getSheetAt(0);
 
-            Iterator<Row> rowIterator = sheet.iterator();
-
-            while(rowIterator.hasNext()) {
-
-                Row row = rowIterator.next();
-
-                Iterator<Cell> cellIterator = row.cellIterator();
-
-                while(cellIterator.hasNext()) {
-
-                    Cell cell = cellIterator.next();
-                    
-                    switch(cell.getCellType()) {
-
-                        case Cell.CELL_TYPE_NUMERIC:
-                            System.out.print(cell.getNumericCellValue() + "t");
-                            break;
-
-                        case Cell.CELL_TYPE_STRING:
-                            System.out.print(cell.getStringCellValue() + "s");
-                            break;
-                    }
-
-                    System.out.println("");
-                }
-
-                fileInputStream.close();
-
+            for(Row row : sheet) {
+                if(row.getRowNum() == 0) continue;
+                System.out.print((int)row.getCell(0).getNumericCellValue()+" - ");
+                System.out.print(row.getCell(1).getStringCellValue()+" - ");
+                System.out.print(row.getCell(2).getStringCellValue()+" - ");
+                System.out.print(row.getCell(3).getStringCellValue()+" - ");
+                System.out.print((int)row.getCell(4).getNumericCellValue());
+                System.out.println("");
             }
+
+            //Iterator<Row> rowIterator = sheet.iterator();
+
+            //while(rowIterator.hasNext()) {
+
+            //    Row row = rowIterator.next();
+
+            //    Iterator<Cell> cellIterator = row.cellIterator();
+
+            //    while(cellIterator.hasNext()) {
+
+            //        Cell cell = cellIterator.next();
+
+            //        //int columnIndex = cell.getColumnIndex();
+            //        
+            //    //    switch(columnIndex) {
+
+            //    //        case 0:
+            //    //            System.out.print(cell.getStringCellValue() + "string 0");
+            //    //            break;
+
+            //    //        case 1:
+            //    //            System.out.print(cell.getStringCellValue() + "string 1");
+            //    //            break;
+            //    //    }
+
+            //    //    System.out.println(" ");
+            //        System.out.print(cell.getStringCellValue() + " - ");
+            //    }
+            //    System.out.println("");
+
+            //}
+
+            workbook.close();
+            fileInputStream.close();
 
 
 
@@ -79,4 +97,17 @@ public class ImportExcelData {
         }
     }
 
+//    private Object getCellValue(Cell cell) {
+//        switch(cell.getCellType()) {
+//            case Cell.CELL_TYPE_STRING:
+//                return cell.getStringCellValue();
+//            case Cell.CELL_TYPE_BOOLEAN:
+//                return cell.getBooleanCellValue();
+//            case Cell.CELL_TYPE_NUMERIC:
+//                return cell.getNumericCellValue();
+//        }
+//
+//        return null;
+//    }
 }
+

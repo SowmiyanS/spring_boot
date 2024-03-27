@@ -38,12 +38,23 @@
 			<scope>test</scope>
 		</dependency>
 
+        <!-- Apache POI Dependency Start -->
         <!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi</artifactId>
             <version>5.2.0</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
+        <!-- Apparently this is where XSSF Workbook is located so it is also need to use Workbook -->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>5.2.0</version>
+        </dependency>
+        <!-- Apache POI Dependency Ends -->
+
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
