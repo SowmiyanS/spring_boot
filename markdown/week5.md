@@ -24,3 +24,10 @@
 
 ## 5. presentations choose your own topic on technical or non technical. presentations must be 8-10 slides. prepare the ppt with formal slides.
 - Created a presentation on chernobyl neuclear reactor meltdown.
+
+
+
+
+### References:
+- [how to use apache poi to read excel files](https://www.geeksforgeeks.org/reading-writing-data-excel-file-using-apache-poi/)
+- [stackoverflow recommended tutorial to read excel](https://www.codejava.net/coding/how-to-read-excel-files-in-java-using-apache-poi)
