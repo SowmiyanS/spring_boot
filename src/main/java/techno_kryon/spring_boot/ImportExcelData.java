@@ -3,111 +3,72 @@ package techno_kryon.spring_boot;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-//import org.apache.poi.xssf.usermodel.HSSFSheet;
-//import org.apache.poi.xssf.usermodel.HSSFWorkbook;
-//import org.apache.poi.ss.usermodel.XSSFSheet;
-//import org.apache.poi.ss.usermodel.XSSFWorkbook;
-//import org.apache.poi.ss.usermodel.Cell;
-//import org.apache.poi.ss.usermodel.FormulaEvaluator;
-//import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.*;
+
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.*;
 
-
-import java.util.Iterator;
 import org.springframework.stereotype.Component;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.util.ResourceUtils;
 
 
 @Component
 public class ImportExcelData {
+    @Autowired
+    private DepartmentService departmentService;
 
+    @Autowired
+    private EmployeeService employeeService;
 
-    //private String filePath = env.getProperty("excelfilepath");
-    private String filePath = "./src/main/resources/data.xlsx";
+    @Value("${excel-file-path}")
+    private String filePath; 
+
 
     @PostConstruct
     public void importExcelData() {
         try {
-            FileInputStream fileInputStream = new FileInputStream(new File(filePath));
+            //FileInputStream fileInputStream = new FileInputStream(new File(filePath));
+            FileInputStream fileInputStream = new FileInputStream(ResourceUtils.getFile("classpath:data.xlsx"));
 
             System.out.println("Successfully Opened Excel File");
-
-
-            // Main Logic Starts
-
             Workbook workbook = new XSSFWorkbook(fileInputStream);
 
-            Sheet sheet = workbook.getSheetAt(0);
+            Sheet employeeSheet = workbook.getSheetAt(0);
+            Sheet departmentSheet = workbook.getSheetAt(1);
 
-            for(Row row : sheet) {
+            for(Row row: departmentSheet) {
                 if(row.getRowNum() == 0) continue;
-                System.out.print((int)row.getCell(0).getNumericCellValue()+" - ");
-                System.out.print(row.getCell(1).getStringCellValue()+" - ");
-                System.out.print(row.getCell(2).getStringCellValue()+" - ");
-                System.out.print(row.getCell(3).getStringCellValue()+" - ");
-                System.out.print((int)row.getCell(4).getNumericCellValue());
-                System.out.println("");
+                Department department = new Department();
+                department.setDepartmentId((int)row.getCell(0).getNumericCellValue());
+                department.setDepartmentName(row.getCell(1).getStringCellValue());
+                department.setLocation(row.getCell(2).getStringCellValue());
+                departmentService.createDepartment(department);
             }
 
-            //Iterator<Row> rowIterator = sheet.iterator();
-
-            //while(rowIterator.hasNext()) {
-
-            //    Row row = rowIterator.next();
-
-            //    Iterator<Cell> cellIterator = row.cellIterator();
-
-            //    while(cellIterator.hasNext()) {
-
-            //        Cell cell = cellIterator.next();
-
-            //        //int columnIndex = cell.getColumnIndex();
-            //        
-            //    //    switch(columnIndex) {
-
-            //    //        case 0:
-            //    //            System.out.print(cell.getStringCellValue() + "string 0");
-            //    //            break;
-
-            //    //        case 1:
-            //    //            System.out.print(cell.getStringCellValue() + "string 1");
-            //    //            break;
-            //    //    }
-
-            //    //    System.out.println(" ");
-            //        System.out.print(cell.getStringCellValue() + " - ");
-            //    }
-            //    System.out.println("");
-
-            //}
+            for(Row row : employeeSheet) {
+                if(row.getRowNum() == 0) continue;
+                Employee employee = new Employee();
+                employee.setEmployeeId((int)row.getCell(0).getNumericCellValue());
+                employee.setEmployeeName(row.getCell(1).getStringCellValue());
+                employee.setEmployeeEmail(row.getCell(2).getStringCellValue());
+                employee.setEmployeePassword(row.getCell(3).getStringCellValue());
+                Department department = departmentService.getDepartment((int)row.getCell(4).getNumericCellValue()).orElseThrow(() -> new RuntimeException("Department id : "+row.getCell(4).getNumericCellValue()+" is not found!"));
+                employee.setDepartment(department);
+                employeeService.createEmployee(employee);
+            }
 
             workbook.close();
             fileInputStream.close();
-
-
-
         }
         catch (IOException ioe) {
             System.out.println("IO ERROR OCCURED!");
             ioe.printStackTrace();
         }
     }
-
-//    private Object getCellValue(Cell cell) {
-//        switch(cell.getCellType()) {
-//            case Cell.CELL_TYPE_STRING:
-//                return cell.getStringCellValue();
-//            case Cell.CELL_TYPE_BOOLEAN:
-//                return cell.getBooleanCellValue();
-//            case Cell.CELL_TYPE_NUMERIC:
-//                return cell.getNumericCellValue();
-//        }
-//
-//        return null;
-//    }
 }
 
