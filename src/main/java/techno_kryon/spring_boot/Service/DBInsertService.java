@@ -14,10 +14,10 @@ public class DBInsertService {
     @Autowired
     private EmployeeRepository employeeRepository;
 
-    @PostConstruct
-    public void InitialDBValue() {
-        Department department = departmentRepository.save(new Department("React", "Chennai"));
-        employeeRepository.save(new Employee("JayaSurya", "jayasurya@gmail.com", "verystrongpassword", department));
-    }
+    //@PostConstruct
+    //public void InitialDBValue() {
+    //    Department department = departmentRepository.save(new Department("React", "Chennai"));
+    //    employeeRepository.save(new Employee("JayaSurya", "jayasurya@gmail.com", "verystrongpassword", department));
+    //}
 
 }

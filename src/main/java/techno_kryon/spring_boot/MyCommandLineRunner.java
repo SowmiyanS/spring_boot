@@ -4,6 +4,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.beans.factory.annotation.Autowired;  // For getting database config values
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.slf4j.Logger;                                        // For logging
+import org.slf4j.LoggerFactory;
 
 @Component
 public class MyCommandLineRunner implements CommandLineRunner {
@@ -14,22 +16,24 @@ public class MyCommandLineRunner implements CommandLineRunner {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
+    Logger logger = LoggerFactory.getLogger(MyCommandLineRunner.class);
+
     @Override
     public void run(String ... args) throws Exception {
-        System.out.println("\n\tThis is my commandline runner!\n");
+        logger.info("This is my commandline runner!");
 
-        System.out.println("\n\tWELCOME TO SPRING BOOT APPLICATION\n");
+        logger.info("WELCOME TO SPRING BOOT APPLICATION");
 
 
         // Print the Database configuration values for the database.
-        System.out.println(config); // accessing the database config
+        //logger.info(config); // accessing the database config | commented it because logger throws error that it does not know what to do with it
         
         // Now to connect to a database.
         if(checkDatabaseConnection()) {
-            System.out.println("\n\tSuccessfully Connected to Database!\n");
+            logger.info("Successfully Connected to Database!");
         }
         else {
-            System.out.println("\n\tERROR cannot connect to database");
+            logger.info("ERROR cannot connect to database");
         }
 
         //System.out.println("Inserting value into database!\n");
@@ -39,7 +43,7 @@ public class MyCommandLineRunner implements CommandLineRunner {
         //Employee employee = new Employee("SowmiyanS", "sowmiyan9491@gmail.com", "verystrongpassword1", department);
         //employeeRepository.save(employee);
 
-        System.out.println("Successfully saved values!\n");
+        //logger.info("Successfully saved values!");
 
     }
 
@@ -49,7 +53,7 @@ public class MyCommandLineRunner implements CommandLineRunner {
             return true;
         }
         catch(Exception e) {
-            System.out.println(e.getMessage());
+            logger.error(e.getMessage());
             return false;
         }
     }
