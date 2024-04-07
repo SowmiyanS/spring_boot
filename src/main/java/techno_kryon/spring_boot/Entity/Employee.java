@@ -26,6 +26,12 @@ public class Employee {
     @Column(name = "email")
     private String employeeEmail;
 
+    @Column(name = "age")
+    private Integer employeeAge;
+
+    @Column(name = "phone")
+    private Long employeePhone;
+
     @Column(name = "password")
     private String employeePassword;
 
@@ -36,11 +42,13 @@ public class Employee {
     // Default Constructor
     public Employee() {}
     // Parameterized Constructor [dependency injection]
-    public Employee(String employeeName, String employeeEmail, String employeePassword, Department department) {
+    public Employee(String employeeName, String employeeEmail, Integer employeeAge, Long employeePhone,  String employeePassword, Department department) {
         super();
         //this.employeeId = employeeId;
         this.employeeName = employeeName;
         this.employeeEmail = employeeEmail;
+        this.employeeAge = employeeAge;
+        this.employeePhone = employeePhone;
         this.employeePassword = employeePassword;
         this.department = department;
     }
@@ -70,6 +78,22 @@ public class Employee {
 	public void setEmployeeEmail(String employeeEmail) {
 		this.employeeEmail = employeeEmail;
 	}
+
+    public Integer getEmployeeAge() {
+        return employeeAge;
+    }
+
+    public void setEmployeeAge(Integer employeeAge) {
+        this.employeeAge = employeeAge;
+    }
+
+    public Long getEmployeePhone() {
+        return employeePhone;
+    }
+
+    public void setEmployeePhone(Long employeePhone) {
+        this.employeePhone = employeePhone;
+    }
 
     public String getEmployeePassword() {
         return employeePassword;

@@ -5,21 +5,17 @@ import java.util.Optional;
 
 public interface EmployeeService {
     
+    // Create
     public Employee createEmployee(Employee employee);
 
+    // Read
     public Optional<Employee> getEmployee(Integer employeeId);
 
     public List<Employee> getEmployees();
 
-    // save operation
-    //Employee saveEmployee(Employee employee);
+    // Update
+    public Employee updateEmployee(Employee employee, Integer employeeId);
 
-    //// read operation
-    //List<Employee> fetchEmployeeList();
-
-    //// update operation
-    //Employee updateEmployee(Employee employee, Integer employeeId);
-
-    //// delete operation
-    //void deleteEmployeeById(Integer employeeId);
+    // Delete
+    public void deleteEmployee(Integer employeeId);
 }
