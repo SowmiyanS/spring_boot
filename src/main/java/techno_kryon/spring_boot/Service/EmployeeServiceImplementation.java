@@ -17,18 +17,25 @@ public class EmployeeServiceImplementation implements EmployeeService {
         return employeeSaved;
     }
 
-    //@Override
     public Optional<Employee> getEmployee(Integer employeeId) {
         //Employee employee = employeeRepository.getByEmployeeId(employeeId);
         return employeeRepository.findById(employeeId);
         //return employee;
     }
 
-    //@Override
     public List<Employee> getEmployees() {
         Iterable<Employee> iterable = employeeRepository.findAll();
         List<Employee> employees = new ArrayList<>();
         iterable.forEach(employees::add);
         return employees;
+    }
+
+    public Employee updateEmployee(Employee employee, Integer employeeId) {
+        Employee employeeUpdated = employeeRepository.save(employee);
+        return employeeUpdated;
+    }
+
+    public void deleteEmployee(Integer employeeId) {
+        employeeRepository.deleteById(employeeId);
     }
 }
