@@ -3,8 +3,9 @@ package techno_kryon.spring_boot;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 
-@SpringBootApplication
+@SpringBootApplication//(exclude = { SecurityAutoConfiguration.class }) // Other wise the spring security generates a login page before we can use any api endpoints
 public class Application {
 
 	public static void main(String[] args) {

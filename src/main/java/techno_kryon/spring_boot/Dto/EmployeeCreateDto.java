@@ -1,15 +1,14 @@
 package techno_kryon.spring_boot;
 
-
-public class EmployeeDto {
+public class EmployeeCreateDto {
     private String name;
     private String email;
     private Integer age;
     private Long phone;
+    private String password;
     private Integer departmentId;
 
-    // No args constructor
-    public EmployeeDto() {
+    public EmployeeCreateDto() {
         super();
     }
 
@@ -44,6 +43,14 @@ public class EmployeeDto {
 
     public void setPhone(Long phone) {
         this.phone = phone;
+    }
+
+    public String getPassword() {
+        return this.password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public Integer getDepartmentId() {
