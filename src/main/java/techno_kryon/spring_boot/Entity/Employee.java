@@ -32,6 +32,18 @@ public class Employee {
     @Column(name = "phone")
     private Long employeePhone;
 
+    @Column(name = "created on", nullable = false)
+    private String employeeCreatedOn;
+
+    @Column(name = "created by", nullable = false)
+    private String employeeCreatedBy;
+
+    @Column(name = "modified on")
+    private String employeeModifiedOn;
+
+    @Column(name = "modified by")
+    private String employeeModifiedBy;
+
     @Column(name = "password")
     private String employeePassword;
 
@@ -42,13 +54,17 @@ public class Employee {
     // Default Constructor
     public Employee() {}
     // Parameterized Constructor [dependency injection]
-    public Employee(String employeeName, String employeeEmail, Integer employeeAge, Long employeePhone,  String employeePassword, Department department) {
+    public Employee(String employeeName, String employeeEmail, Integer employeeAge, Long employeePhone, String employeeCreatedOn, String employeeCreatedBy, String employeeModifiedOn, String employeeModifiedBy, String employeePassword, Department department) {
         super();
         //this.employeeId = employeeId;
         this.employeeName = employeeName;
         this.employeeEmail = employeeEmail;
         this.employeeAge = employeeAge;
         this.employeePhone = employeePhone;
+        this.employeeCreatedOn = employeeCreatedOn;
+        this.employeeCreatedBy = employeeCreatedBy;
+        this.employeeModifiedOn = employeeModifiedOn;
+        this.employeeModifiedBy = employeeModifiedBy;
         this.employeePassword = employeePassword;
         this.department = department;
     }
@@ -93,6 +109,38 @@ public class Employee {
 
     public void setEmployeePhone(Long employeePhone) {
         this.employeePhone = employeePhone;
+    }
+
+    public String getEmployeeCreatedOn() {
+        return this.employeeCreatedOn;
+    }
+
+    public void setEmployeeCreatedOn(String employeeCreatedOn) {
+        this.employeeCreatedOn = employeeCreatedOn;
+    }
+
+    public String getEmployeeCreatedBy() {
+        return this.employeeCreatedBy;
+    }
+
+    public void setEmployeeCreatedBy(String employeeCreatedBy) {
+        this.employeeCreatedBy = employeeCreatedBy;
+    }
+
+    public String getEmployeeModifiedOn() {
+        return this.employeeModifiedOn;
+    }
+
+    public void setEmployeeModifiedOn(String employeeModifiedOn) {
+        this.employeeModifiedOn = employeeModifiedOn;
+    }
+
+    public String getEmployeeModifiedBy() {
+        return this.employeeModifiedBy;
+    }
+
+    public void setEmployeeModifiedBy(String employeeModifiedBy) {
+        this.employeeModifiedBy = employeeModifiedBy;
     }
 
     public String getEmployeePassword() {

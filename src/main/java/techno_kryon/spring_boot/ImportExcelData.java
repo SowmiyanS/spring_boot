@@ -4,6 +4,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
+import java.sql.Timestamp;
+import java.time.Instant;
+
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -62,6 +65,12 @@ public class ImportExcelData {
                 employee.setEmployeeEmail(row.getCell(2).getStringCellValue());
                 employee.setEmployeeAge((int)row.getCell(3).getNumericCellValue());
                 employee.setEmployeePhone((long)row.getCell(4).getNumericCellValue());
+                
+                Timestamp timestamp = Timestamp.from(Instant.now());
+                employee.setEmployeeCreatedOn(timestamp+"");    // Cast the timestamp type to String
+
+                employee.setEmployeeCreatedBy("PostConstuct");
+
                 employee.setEmployeePassword(row.getCell(5).getStringCellValue());
                 Department department = departmentService.getDepartment((int)row.getCell(6).getNumericCellValue()).orElseThrow(() -> new RuntimeException("Department id : "+row.getCell(6).getNumericCellValue()+" is not found!"));
                 employee.setDepartment(department);
